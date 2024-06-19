@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.Collections;
 
 @SpringBootApplication
-@EnableEurekaClient
 public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
@@ -21,16 +20,16 @@ public class InventoryServiceApplication {
 	@Bean
 	public CommandLineRunner loadData(InventoryRepository inventoryRepository) {
 		return args -> {
-			if (inventoryRepository.findBySkuCodeIn(Collections.singletonList("iphone_13")) == null) {
+			if (inventoryRepository.findBySkuCodeIn(Collections.singletonList("iphone_13")).isEmpty()) {
 				Inventory inventory = new Inventory();
 				inventory.setSkuCode("iphone_13");
 				inventory.setQuantity(100);
 				inventoryRepository.save(inventory);
 			}
-			if (inventoryRepository.findBySkuCodeIn(Collections.singletonList("iphone_13_red")) == null) {
+			if (inventoryRepository.findBySkuCodeIn(Collections.singletonList("iphone_13_red")).isEmpty()) {
 				Inventory inventory1 = new Inventory();
 				inventory1.setSkuCode("iphone_13_red");
-				inventory1.setQuantity(0);
+				inventory1.setQuantity(50);
 				inventoryRepository.save(inventory1);
 			}
 		};

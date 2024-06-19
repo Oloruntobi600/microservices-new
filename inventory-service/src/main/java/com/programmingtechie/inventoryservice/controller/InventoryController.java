@@ -22,12 +22,16 @@ public class InventoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
-        try {
-            log.info("Received inventory check request for skuCode: {}", skuCode);
-            return inventoryService.isInStock(skuCode);
-        } catch (Exception e) {
-            log.error("Error checking inventory", e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error checking inventory");
-        }
+        log.info("Received inventory check request for skuCode: {}", skuCode);
+        return inventoryService.isInStock(skuCode);
     }
 }
+//    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode) {
+//        try {
+//            log.info("Received inventory check request for skuCode: {}", skuCode);
+//            return inventoryService.isInStock(skuCode);
+//        } catch (Exception e) {
+//            log.error("Error checking inventory", e);
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error checking inventory");
+//        }
+//    }
